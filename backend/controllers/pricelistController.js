@@ -16,18 +16,16 @@ const getAllItems = async (req, res) => {
 
 const updateItem = async (req, res) => {
   const { id } = req.params;
-  const { product_service, in_price, out_price, quantity, unit, discount, vat, total } = req.body;
+  const { article_no, product_service, in_price, price, unit, in_stock, description } = req.body;
 
   try {
-    // added this cause user can change total, so recalcualte for protection (add )
-    const computedTotal = (out_price * quantity) * (1 - discount / 100) * (1 + vat / 100);
     const result = await pool.query(
       `UPDATE pricelist_items 
-       SET product_service = $1, in_price = $2, out_price = $3, 
-           quantity = $4, unit = $5, discount = $6, vat = $7, total = $8
-       WHERE id = $9
+       SET article_no = $1, product_service = $2, in_price = $3, 
+           price = $4, unit = $5, in_stock = $6, description = $7
+       WHERE id = $8
        RETURNING *`,
-      [product_service, in_price, out_price, quantity, unit, discount, vat, computedTotal, id]
+      [article_no, product_service, in_price, price, unit, in_stock, description, id]
     );
 
     if (result.rows.length === 0) {
@@ -45,4 +43,23 @@ const updateItem = async (req, res) => {
   }
 };
 
-module.exports = { getAllItems, updateItem };
+const searchItems = async (req, res) => {
+  const { query } = req.query;
+
+  try {
+    const result = await pool.query(
+      `SELECT * FROM pricelist_items 
+       WHERE article_no ILIKE $1 OR product_service ILIKE $1 
+       ORDER BY id`,
+      [`%${query}%`]
+    );
+
+    res.json(result.rows);
+
+  } catch (error) {
+    console.error('search error:', error);
+    res.status(500).json({ error: 'server error' });
+  }
+};
+
+module.exports = { getAllItems, updateItem, searchItems };
