@@ -54,13 +54,15 @@ function Terms() {
             </div>
           )}
 
-          <img 
-            src="https://storage.123fakturera.se/public/icons/diamond.png" 
-            alt="logo" 
-            className="navbar-logo"
-          />
+          <div onClick={() => navigate(-1)} style={{ cursor: 'pointer' }}>
+            <img
+              src="https://storage.123fakturera.se/public/icons/diamond.png"
+              alt="logo"
+              className="navbar-logo"
+            />
+          </div>
         </div>
-        
+
         <div className="navbar-center">
           <div className="navbar-links">
             <a href="/">Home</a>
@@ -70,16 +72,16 @@ function Terms() {
             <a href="/contact">Contact Us</a>
           </div>
         </div>
-        
+
         <div className="navbar-right">
-          <button 
+          <button
             className="language-dropdown-btn"
             onClick={() => setShowLangMenu(!showLangMenu)}
           >
             {currentLang.name}
             <img src={currentLang.flag} alt={currentLang.name} />
           </button>
-          
+
           {showLangMenu && (
             <div className="language-menu">
               {languageOptions.map(lang => (
@@ -101,14 +103,14 @@ function Terms() {
 
         <div className="mobile-lang-dropdown">
           <div className="navbar-right">
-            <button 
+            <button
               className="language-dropdown-btn"
               onClick={() => setShowLangMenu(!showLangMenu)}
             >
               {currentLang.name}
               <img src={currentLang.flag} alt={currentLang.name} />
             </button>
-            
+
             {showLangMenu && (
               <div className="language-menu">
                 {languageOptions.map(lang => (
@@ -132,7 +134,7 @@ function Terms() {
 
       <div className="terms-main">
         <h1 className="terms-title">{texts.title || 'Terms'}</h1>
-        
+
         <button className="close-btn" onClick={() => navigate(-1)}>
           {texts.close_button || 'Close and Go Back'}
         </button>
@@ -148,6 +150,12 @@ function Terms() {
             )}
           </div>
         </div>
+        <button
+          className="close-btn bottom-close-btn"
+          onClick={() => navigate(-1)}
+        >
+          {texts.close_button || 'Close and Go Back'}
+        </button>
       </div>
     </div>
   );
