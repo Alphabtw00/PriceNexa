@@ -20,6 +20,7 @@ DB_HOST=localhost
 DB_PORT=5432
 
 3. Start server:
+npm start
 
 ---
 
@@ -29,6 +30,7 @@ cd frontend
 npm install
 
 2. Run dev server:
+npm run dev
 
 ---
 
