@@ -27,7 +27,7 @@ CREATE TABLE pricelist_items (
 );
 
 INSERT INTO users (username, password_hash) 
-VALUES ('testuser1', '$2a$10$i.lTpRzDs7k06QIABgnVL.eNVqeadVc3.QwOwPWXNzH5xlsnN0ZcK');
+VALUES ('testuser1', '$2a$10$llwXnwGrK76hmyo3c4z9oO/OQQppa2k0ZE7n7dVBxcdIHdzMngl4C');
 
 INSERT INTO translations (page, key, language, value) VALUES
 ('login', 'welcome', 'en', 'Welcome'),
