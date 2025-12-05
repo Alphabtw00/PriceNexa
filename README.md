@@ -35,7 +35,7 @@ npm run dev
 ---
 
 ## 🗄 Database
-You can run the schema file located under `/backend/db/schema.sql`  
+You can run the schema file located under `/backend/sql/init.sql`  
 (or the SQL provided during setup) directly in **pgAdmin**.
 
 ---
